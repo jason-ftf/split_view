@@ -1,0 +1,12 @@
+<%= turbo_stream.update dom_id(@person) do %>
+  <td class="border-b p-2"> 
+    <%= link_to "#{@person.first_name} #{@person.last_name}",
+                "#",
+                data: { controller: "person", 
+                        action: "click->person#renderPerson",
+                        person_path_param: person_path(@person) },
+                class: "underline text-blue-500 hover:text-blue-600" %>
+  </td>
+  <td class="border-b p-2"><%= @person.address %>, <%= @person.city %>, <%= @person.state %></td>
+  <td class="border-b p-2"><%= @person.relationship %></td>  
+<% end %>

@@ -1,0 +1,29 @@
+<%= form_with model: @person, url: person_path(@person), method: :patch do |form| %>
+  <div class="mb-5">
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name, class: 'w-full border-2 p-2' %>
+  </div>
+  <div class="mb-5">
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name, class: 'w-full border-2 p-2' %>
+  </div>
+  <div class="mb-5">
+    <%= form.label :address %><br>
+    <%= form.text_field :address, class: 'w-full border-2 p-2' %>
+  </div>
+  <div class="mb-5">
+    <%= form.label :city %><br>
+    <%= form.text_field :city, class: 'w-full border-2 p-2' %>        
+  </div>
+  <div class="mb-5">
+    <%= form.label :state %><br>
+    <%= form.text_field :state, class: 'w-full border-2 p-2' %>                
+  </div>
+  <div class="mb-5">
+    <%= form.label :relationship %><br>
+    <%= form.select :relationship, Person.relationships.keys.to_a, {}, class: "w-full border-2 p-2"  %>
+  </div>
+  <%= form.button class: "bg-green-400 hover:bg-green-500 p-2" do %>
+    Update
+  <% end %>
+<% end %>

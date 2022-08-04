@@ -1,0 +1,35 @@
+<div class="grid grid-cols-2">
+  <section class="p-2 max-h-screen overflow-y-auto">
+    <table class="table-fixed w-full">
+      <thead>
+        <tr class="text-left">
+          <th>name</th>
+          <th>address</th>
+          <th>relationship</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @people.order(created_at: :asc).each do |person| %>
+          <%= content_tag :tr, id: dom_id(person), class: cycle('bg-gray-200', 'bg-gray-100') do %>
+            <td class="border-b p-2"> 
+              <%= link_to "#{person.first_name} #{person.last_name}",
+                           "#",
+                           data: { controller: "person", 
+                                   action: "click->person#renderPerson",
+                                   person_path_param: person_path(person) },
+                           class: "underline text-blue-500 hover:text-blue-600" %>
+              
+            </td>
+            <td class="border-b p-2"><%= person.address %>, <%= person.city %>, <%= person.state %></td>
+            <td class="border-b p-2"><%= person.relationship %></td>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <section class="p-2 h-full">
+    <div id="person-detail">
+      <%= render partial: 'form' %>
+    </div>
+  </section>
+</div>
